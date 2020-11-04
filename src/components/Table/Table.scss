@@ -1,0 +1,20 @@
+@import "../../colors.scss";
+.table {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: $light;
+  &_title {
+    font-family: "Roboto", sans-serif;
+    font-size: 2em;
+    font-weight: 800;
+    color: $dark;
+  }
+  &_rows {
+    width: 100%;
+    border-top: 1px solid $dark;
+    padding-top: 10px;
+  }
+  &_button {
+    cursor: pointer;
+  }
+}

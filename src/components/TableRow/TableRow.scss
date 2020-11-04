@@ -1,0 +1,18 @@
+@import "../../colors.scss";
+.table-row {
+  width: 100%;
+  display: flex;
+  padding: 5px 0;
+  &:hover {
+    background-color: #41414121;
+  }
+  &_cell {
+    width: 200px;
+    color: $dark;
+    &__headers {
+      font-size: 1.3em;
+      font-weight: 500;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@import "../../colors.scss";
+.modal-wr {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(29, 29, 29, 0.151);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  background-color: $light;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &_title {
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    color: $dark;
+    font-size: 2em;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $dark;
+  }
+  &_subtitle {
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    color: $dark;
+    font-size: 1em;
+  }
+  &_input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+  }
+  &_button {
+    margin-top: 10px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: $dark;
+    color: $light;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+  }
+}

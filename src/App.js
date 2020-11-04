@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import Table from "./components/Table/Table";
+import TableRow from "./components/TableRow/TableRow";
+import { useSelector } from "react-redux";
+import EditTableModal from "./components/EditTableModal/EditTableModal";
 
 function App() {
+  let table = useSelector((state) => state.table);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <EditTableModal title="Добавление пользователя" />
+      <Table>
+        {table.map((row, index) => (
+          <TableRow
+            key={index}
+            id={index}
+            cells={[row.name, row.email, row.rights, row.status]}
+          />
+        ))}
+      </Table>
     </div>
   );
 }
