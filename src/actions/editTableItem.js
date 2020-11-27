@@ -1,10 +1,9 @@
-export default function addTableItem(id, name, email, rights, status) {
+export default function addTableItem(id, values) {
   return {
-    type: "EDIT_ITEM",
-    id: id,
-    name: name,
-    email: email,
-    rights: rights,
-    status: status,
+    type: 'EDIT_ITEM',
+    payload: {
+      id: id,
+      values: values,
+    },
   };
 }

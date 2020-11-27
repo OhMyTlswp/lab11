@@ -1,6 +1,6 @@
-export default function openModal(type = "create", id = null) {
+export default function openModal(type = 'create', id = null) {
   return {
-    type: "MODAL_IS_OPEN",
+    type: 'MODAL_IS_OPEN',
     payload: { status: true, type: type, id: id },
   };
 }

@@ -1,23 +1,8 @@
 const initialState = {
-  table: [
-    {
-      name: "Александр",
-      email: "emailmail",
-      rights: "админ",
-      status: "Активный",
-    },
-    {
-      name: "Александр",
-      email: "emailmail",
-      rights: "админ",
-      status: "Активный",
-    },
-  ],
+  table: {
+    items: [],
+  },
   editTableModal: {
-    name: "",
-    email: "",
-    rights: "",
-    status: "",
     isOpen: false,
     type: "create",
   },

@@ -1,23 +1,53 @@
-import "./App.scss";
-import Table from "./components/Table/Table";
-import TableRow from "./components/TableRow/TableRow";
-import { useSelector } from "react-redux";
-import EditTableModal from "./components/EditTableModal/EditTableModal";
+import './App.scss';
+import Table from './components/Table/Table';
 
 function App() {
-  let table = useSelector((state) => state.table);
   return (
     <div className="app">
-      <EditTableModal title="Добавление пользователя" />
-      <Table>
-        {table.map((row, index) => (
-          <TableRow
-            key={index}
-            id={index}
-            cells={[row.name, row.email, row.rights, row.status]}
-          />
-        ))}
-      </Table>
+      <Table
+        name="Пользователи"
+        onChangeData={(data) => {
+          console.log(data);
+        }}
+        headers={{
+          name: {
+            name: 'Имя',
+            type: 'text',
+            defaultValue: 'Имя не задано',
+          },
+          email: {
+            name: 'Email',
+            type: 'email',
+            defaultValue: 'Email не задан',
+          },
+          rights: {
+            name: 'Права',
+            type: 'dropdown',
+            defaultValue: 'Права не заданы',
+            dropdownItems: ['Админ', 'Пользователь'],
+          },
+          status: {
+            name: 'Статус',
+            type: 'dropdown',
+            defaultValue: 'Статус не задан',
+            dropdownItems: ['Активный', 'Не активный', 'Забаненый'],
+          },
+        }}
+        data={[
+          {
+            name: 'Александр',
+            email: 'emailmail',
+            rights: 'админ',
+            status: 'Активный',
+          },
+          {
+            name: 'Александр',
+            email: 'emailmail',
+            rights: 'админ',
+            status: 'Активный',
+          },
+        ]}
+      />
     </div>
   );
 }
