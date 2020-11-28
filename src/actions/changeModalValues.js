@@ -1,5 +1,5 @@
 export function changeValue(value, key) {
-  return { type: 'SET_MODAL_VALUE', payload: { value: value, key: key } };
+  return { type: 'SET_MODAL_VALUE', payload: { value, key } };
 }
 export function changeValues(values) {
   return { type: 'SET_MODAL_VALUES', payload: values };
@@ -13,6 +13,6 @@ export function changeRights(value) {
 export function changeStatus(value) {
   return { type: 'SET_MODAL_STATUS', payload: value };
 }
-export function clearModal(value) {
+export function clearModal() {
   return { type: 'CLEAR_MODAL' };
 }

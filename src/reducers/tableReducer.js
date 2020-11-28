@@ -1,24 +1,26 @@
 import initialState from '../initialState';
 
 export default function tableReducer(state = initialState, action) {
+  let newState;
   switch (action.type) {
     case 'ADD_ITEM':
-      const headersArr = Object.entries(state.headers);
-      const headersKeys = Object.keys(state.headers);
-      // const items = [];
-      headersArr.forEach((headerItem) => {
-        headerItem[1] = '';
-        return;
-      });
-      for (const key in action.payload) {
-        const index = headersKeys.indexOf(key);
-        if (index >= 0) {
-          headersArr[index][1] = action.payload[key];
-        }
-      }
-      let newState = {
+      // const headersArr = Object.entries(state.headers);
+      // const headersKeys = Object.keys(state.headers);
+      // // const items = [];
+      // headersArr.forEach((headerItem) => {
+      //   const item = headerItem;
+      //   item[1] = '';
+      //   return item;
+      // });
+      // for (const key in action.payload) {
+      //   const index = headersKeys.indexOf(key);
+      //   if (index >= 0) {
+      //     headersArr[index][1] = action.payload[key];
+      //   }
+      // }
+      newState = {
         ...state,
-        items: [...state.items, Object.fromEntries(headersArr)],
+        items: [...state.items, action.payload],
       };
       return newState;
     case 'ADD_ITEMS_ARRAY':
@@ -36,17 +38,7 @@ export default function tableReducer(state = initialState, action) {
     case 'EDIT_ITEM':
       newState = {
         ...state,
-        items: state.items.map((item, index) => {
-          if (index === action.payload.id) {
-            // let payload = [];
-            // for (let key in state.headers) {
-            //   payload[key]=
-            // }
-            return action.payload.values;
-          } else {
-            return item;
-          }
-        }),
+        items: state.items.map((item, index) => (index === action.payload.id ? action.payload.values : item)),
       };
       return newState;
     case 'SET_HEADERS':

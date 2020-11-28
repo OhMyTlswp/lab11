@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './EditTableModal.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import closeModal from '../../actions/closeModal';
@@ -5,15 +7,14 @@ import { changeValue, clearModal } from '../../actions/changeModalValues';
 import addTableItem from '../../actions/addTableItem';
 import editTableItem from '../../actions/editTableItem';
 import delelteTableItem from '../../actions/delelteTableItem';
-import { useEffect } from 'react';
 
 function EditTableModalInput({ type, header, keyType, value, dropdownItems }) {
+  const dispatch = useDispatch();
   useEffect(() => {
     if (type === 'dropdown') {
       dispatch(changeValue(value, keyType));
     }
   }, []);
-  const dispatch = useDispatch();
   switch (type) {
     case ('text', 'email', 'number'):
       return (
@@ -41,10 +42,10 @@ function EditTableModalInput({ type, header, keyType, value, dropdownItems }) {
                 dispatch(changeValue(event.target.value, keyType));
               }}
             >
-              <option value="0">Выберите {header}:</option>;
-              {dropdownItems.map((dropdownValue) => {
-                return <option value={dropdownValue}>{dropdownValue}</option>;
-              })}
+              <option value="0">{header}</option>
+              {dropdownItems.map((dropdownValue) => (
+                <option value={dropdownValue}>{dropdownValue}</option>
+              ))}
             </select>
           ) : (
             <input
@@ -74,6 +75,16 @@ function EditTableModalInput({ type, header, keyType, value, dropdownItems }) {
       );
   }
 }
+EditTableModalInput.defaultProps = {
+  dropdownItems: null,
+};
+EditTableModalInput.propTypes = {
+  type: PropTypes.string.isRequired,
+  header: PropTypes.string.isRequired,
+  keyType: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  dropdownItems: PropTypes.arrayOf(PropTypes.string),
+};
 
 function EditTableModal({ title, headers, onChangeData }) {
   const modal = useSelector((state) => state.modal);
@@ -88,9 +99,15 @@ function EditTableModal({ title, headers, onChangeData }) {
             dispatch(closeModal());
             // dispatch(clearModal());
           }}
+          role="button"
+          tabIndex={0}
+          aria-hidden="true"
           className="modal-wr"
         >
           <div
+            role="button"
+            tabIndex={0}
+            aria-hidden="true"
             onClick={(event) => {
               event.stopPropagation();
             }}
@@ -107,11 +124,14 @@ function EditTableModal({ title, headers, onChangeData }) {
               />
             ))}
             <div
+              role="button"
+              tabIndex={0}
+              aria-hidden="true"
               onClick={() => {
                 dispatch(modal.type === 'edit' ? editTableItem(modal.id, modal.values) : addTableItem(modal.values));
                 dispatch(closeModal());
                 dispatch(clearModal());
-                // onChangeData(table.items);
+                onChangeData(table.items);
               }}
               className="modal_button"
             >
@@ -119,6 +139,9 @@ function EditTableModal({ title, headers, onChangeData }) {
             </div>
             {modal.type === 'edit' && (
               <div
+                role="button"
+                tabIndex={0}
+                aria-hidden="true"
                 onClick={() => {
                   dispatch(delelteTableItem(modal.id));
                   dispatch(closeModal());
@@ -137,3 +160,11 @@ function EditTableModal({ title, headers, onChangeData }) {
 }
 
 export default EditTableModal;
+EditTableModal.defaultProps = {
+  onChangeData: null,
+};
+EditTableModal.propTypes = {
+  headers: PropTypes.objectOf(PropTypes.object).isRequired,
+  title: PropTypes.string.isRequired,
+  onChangeData: PropTypes.func,
+};

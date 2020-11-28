@@ -18,6 +18,8 @@
   "plugins": ["react"],
   "rules": {
     "linebreak-style": "off",
+    "react/no-array-index-key":"off",
+    "object-curly-newline":"off",
     "max-len": ["error", { "code": 120 }],
     "react/jsx-filename-extension": [
       1,

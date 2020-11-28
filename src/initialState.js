@@ -4,7 +4,7 @@ const initialState = {
   },
   editTableModal: {
     isOpen: false,
-    type: "create",
+    type: 'create',
   },
 };
 export default initialState;
